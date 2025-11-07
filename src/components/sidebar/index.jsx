@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import {
   GearIcon,
   ListIcon,
@@ -9,8 +10,18 @@ import {
 } from "@phosphor-icons/react";
 import styles from "./sidebar.module.css";
 import Link from "next/link";
+import CreateContactModal from "../create-contact-modal";
 
 function Sidebar() {
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+
+  function handleCreateModalOpen() {
+    setCreateModalOpen(true);
+  }
+
+  function handleCreateModalClose() {
+    setCreateModalOpen(false);
+  }
   return (
     <aside className={styles.container}>
       <header className={styles.header}>
@@ -20,7 +31,10 @@ function Sidebar() {
         <span className={styles.headerTitle}>Contatos</span>
       </header>
 
-      <button className={styles.newContactButton}>
+      <button
+        className={styles.newContactButton}
+        onClick={handleCreateModalOpen}
+      >
         <div className={styles.newContactIcon}>
           <PlusIcon size={24} color="currentColor" />
         </div>
@@ -68,6 +82,10 @@ function Sidebar() {
           </ul>
         </div>
       </nav>
+      <CreateContactModal
+        open={createModalOpen}
+        onClose={handleCreateModalClose}
+      />
     </aside>
   );
 }

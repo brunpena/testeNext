@@ -1,20 +1,15 @@
-"use client";
-
-
-import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import SearchInput from "@/components/search-input";
 import styles from "./page.module.css";
-export default function SearchInput() {
+import Table from "@/components/table";
 
+export default async function Home() {
   return (
-    <div className={styles.searchContainer}>
-      <div className={styles.searchIcon}>
-        <MagnifyingGlassIcon size={24} color="currentColor" />
-      </div>
-      <input
-        className={styles.searchInput}
-        type="text"
-        placeholder="Pesquisa"
-      />
+    <div>
+      <SearchInput />
+      <h1 className={styles.contactTitle}>
+        Seus Contatos <span className={styles.numberOfContacts}>(193)</span>
+      </h1>
+      <Table />
     </div>
   );
 }
